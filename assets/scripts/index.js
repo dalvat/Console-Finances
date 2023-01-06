@@ -88,7 +88,7 @@ let finances = [
 ];
 
 // Print Header to console log
-console.log('Financial Analysis (Jan 2010 -> Feb 2017');
+console.log('Financial Analysis (Jan 2010 to Feb 2017)');
 console.log('----------------------------------------');
 
 // Define and print number of entries to console log
@@ -103,7 +103,7 @@ for (var i = 0; i < finances.length; i++) {
     grandTotal = grandTotal + finances[i][1]
 };
 //Print grand total to console log
-console.log('Total for this period: $' + grandTotal);
+console.log('Net total for this period (profit/loss) : $' + grandTotal);
 
 // Function to calculate the difference between two numbers
 function difference(a, b) {
@@ -150,10 +150,10 @@ console.log('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (
 
 
 // Displays all outputs on the webpage
-document.write('Financial Analysis (Jan 2010 -> Feb 2017' + "<br>");
+document.write('Financial Analysis (Jan 2010 to Feb 2017)' + "<br>");
 document.write('--------------------------------------------------' + '<br>' + '<br>');
 document.write('Total number of months included in this report: ' + totalEntries + '<br>' + '<br>');
-document.write('Total for this period: $' + grandTotal + '<br>' + '<br>');
+document.write('Net total for this period (profit/loss) : $' + grandTotal + '<br>' + '<br>');
 document.write('Average monthly change: $' + averageProfitLoss + '<br>' + '<br>');
 document.write('Largest month on month increase: $' + Math.max(...profitLoss) + ' (' + finances[24][0] + " to " + finances[25][0] + ')' + '<br>' + '<br>');
 document.write('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (' + finances[43][0] + " to " + finances[44][0] + ')' + '<br>' + '<br>');

@@ -88,12 +88,12 @@ let finances = [
 ];
 
 // Print Header to console log
-console.log('Financial Analysis');
-console.log('----------------------------');
+console.log('Financial Analysis (Jan 2010 -> Feb 2017');
+console.log('----------------------------------------');
 
 // Define and print number of entries to console log
 let totalEntries = finances.length;
-console.log('Total number of months included in report: ' + totalEntries);
+console.log('Total number of months included in this report: ' + totalEntries);
 
 // Define grand total
 let grandTotal = 0;
@@ -103,48 +103,57 @@ for (var i = 0; i < finances.length; i++) {
     grandTotal = grandTotal + finances[i][1]
 };
 //Print grand total to console log
-console.log('Grand total: $' + grandTotal);
+console.log('Total for this period: $' + grandTotal);
 
 // Function to calculate the difference between two numbers
 function difference(a, b) {
     if (a >= b) {
         return Math.abs(a - b);
     } else {
-        return Math.abs(b - a);
+        return -Math.abs(b - a);
     }
-}
+};
 
 // Calculate the difference between items in "finances" array and store the values in a new array call profitLoss
-let profitLoss = []
-for (var j = 0, k = j+1; j < finances.length; j++) {
+let profitLoss = [];
+for (var j = 0, k = 1; k < finances.length; j++, k++) {
     if (k === undefined) {
+        break
     } else {
-        profitLoss.push(difference(finances[j][1], finances[k][1]))
+        profitLoss.push(difference(finances[k][1], finances[j][1]))
     }
-}
+};
+// For checking that the array is populated correctly
 // console.log(profitLoss);
 
+// Define variable to store total of all values in profitLoss array
+let totalProfitLoss = 0;
 
-let totalProfitLoss = 0
+// Calculate total of all values in profitLoss array
 for (var l = 0; l < profitLoss.length; l++) {
     totalProfitLoss = totalProfitLoss + profitLoss[l]
-}
+};
+// For checking that the total value of totalProfitLoss variable
 // console.log(totalProfitLoss);
 
-averageProfitLoss = Math.round((totalProfitLoss/profitLoss.length) * 100) / 100
+// Define variable to store average value of totalProfitLoss
+averageProfitLoss = Math.round((totalProfitLoss/profitLoss.length) * 100) / 100;
 
+// Print average profitLoss to console
 console.log('Average monthly change: $' + averageProfitLoss);
 
-console.log('Largest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.max(...profitLoss) + ')');
+// Print largest value in profitLoss array
+console.log('Largest month on month increase: $' + Math.max(...profitLoss) + ' (' + finances[24][0] + " to " + finances[25][0] + ')');
 
-console.log('Smallest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.min(...profitLoss) + ')');
+// Print smallest value in profitLoss array
+console.log('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (' + finances[43][0] + " to " + finances[44][0] + ')');
 
 
-// Displays the outputs on the webpage
-document.write('Financial Analysis' + '<br>')
-document.write('-----------------------' + '<br>' + '<br>')
-document.write('Total number of months included in report: ' + totalEntries + '<br>' + '<br>')
-document.write('Grand total: $' + grandTotal + '<br>' + '<br>')
-document.write('Average monthly change: $' + averageProfitLoss + '<br>' + '<br>')
-document.write('Largest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.max(...profitLoss) + ')' + '<br>' + '<br>')
-document.write('Smallest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.min(...profitLoss) + ')' + '<br>' + '<br>')
+// Displays all outputs on the webpage
+document.write('Financial Analysis (Jan 2010 -> Feb 2017' + "<br>");
+document.write('--------------------------------------------------' + '<br>' + '<br>');
+document.write('Total number of months included in this report: ' + totalEntries + '<br>' + '<br>');
+document.write('Total for this period: $' + grandTotal + '<br>' + '<br>');
+document.write('Average monthly change: $' + averageProfitLoss + '<br>' + '<br>');
+document.write('Largest month on month increase: $' + Math.max(...profitLoss) + ' (' + finances[24][0] + " to " + finances[25][0] + ')' + '<br>' + '<br>');
+document.write('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (' + finances[43][0] + " to " + finances[44][0] + ')' + '<br>' + '<br>');

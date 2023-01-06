@@ -1,4 +1,4 @@
-var finances = [
+let finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -86,3 +86,65 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// Print Header to console log
+console.log('Financial Analysis');
+console.log('----------------------------');
+
+// Define and print number of entries to console log
+let totalEntries = finances.length;
+console.log('Total number of months included in report: ' + totalEntries);
+
+// Define grand total
+let grandTotal = 0;
+
+// Calculate the grand total using "for" loop, targetting the second nested item in the array [1]
+for (var i = 0; i < finances.length; i++) {
+    grandTotal = grandTotal + finances[i][1]
+};
+//Print grand total to console log
+console.log('Grand total: $' + grandTotal);
+
+// Function to calculate the difference between two numbers
+function difference(a, b) {
+    if (a >= b) {
+        return Math.abs(a - b);
+    } else {
+        return Math.abs(b - a);
+    }
+}
+
+// Calculate the difference between items in "finances" array and store the values in a new array call profitLoss
+let profitLoss = []
+for (var j = 0, k = j+1; j < finances.length; j++) {
+    if (k === undefined) {
+    } else {
+        profitLoss.push(difference(finances[j][1], finances[k][1]))
+    }
+}
+// console.log(profitLoss);
+
+
+let totalProfitLoss = 0
+for (var l = 0; l < profitLoss.length; l++) {
+    totalProfitLoss = totalProfitLoss + profitLoss[l]
+}
+// console.log(totalProfitLoss);
+
+averageProfitLoss = Math.round((totalProfitLoss/profitLoss.length) * 100) / 100
+
+console.log('Average monthly change: $' + averageProfitLoss);
+
+console.log('Largest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.max(...profitLoss) + ')');
+
+console.log('Smallest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.min(...profitLoss) + ')');
+
+
+// Displays the outputs on the webpage
+document.write('Financial Analysis' + '<br>')
+document.write('-----------------------' + '<br>' + '<br>')
+document.write('Total number of months included in report: ' + totalEntries + '<br>' + '<br>')
+document.write('Grand total: $' + grandTotal + '<br>' + '<br>')
+document.write('Average monthly change: $' + averageProfitLoss + '<br>' + '<br>')
+document.write('Largest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.max(...profitLoss) + ')' + '<br>' + '<br>')
+document.write('Smallest increase in profits: ' + 'MMM-YYYY' + ' ($' + Math.min(...profitLoss) + ')' + '<br>' + '<br>')

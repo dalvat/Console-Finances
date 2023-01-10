@@ -97,13 +97,18 @@ console.log('Total number of months included in this report: ' + totalEntries);
 
 // Define grand total
 let grandTotal = 0;
-
 // Calculate the grand total using "for" loop, targetting the second nested item in the array [1]
 for (var i = 0; i < finances.length; i++) {
     grandTotal = grandTotal + finances[i][1]
 };
-//Print grand total to console log
-console.log('Net total for this period (profit/loss) : $' + grandTotal);
+// Format grand total value to display in $
+let grandTotalFormatted = grandTotal.toLocaleString("en-US", {
+    style: 'currency',
+    currency: 'USD',
+});
+
+// Print formatted grand total value to console log
+console.log('Net total for this period (profit/loss) : ' + grandTotalFormatted);
 
 // Function to calculate the difference between two numbers
 function difference(a, b) {
@@ -123,6 +128,7 @@ for (var j = 0, k = 1; k < finances.length; j++, k++) {
         profitLoss.push(difference(finances[k][1], finances[j][1]))
     }
 };
+
 // For checking that the array is populated correctly
 // console.log(profitLoss);
 
@@ -133,27 +139,53 @@ let totalProfitLoss = 0;
 for (var l = 0; l < profitLoss.length; l++) {
     totalProfitLoss = totalProfitLoss + profitLoss[l]
 };
+
 // For checking that the total value of totalProfitLoss variable
 // console.log(totalProfitLoss);
 
 // Define variable to store average value of totalProfitLoss
-averageProfitLoss = Math.round((totalProfitLoss/profitLoss.length) * 100) / 100;
+// Adding "Math.round() * 100 / 100" displays the value to the nearest 100th
+let averageProfitLoss = Math.round((totalProfitLoss/profitLoss.length) * 100) / 100;
 
-// Print average profitLoss to console
-console.log('Average monthly change: $' + averageProfitLoss);
+// Format average profit loss value to display in $
+let averageProfitLossFormatted = averageProfitLoss.toLocaleString("en-US", {
+    style: 'currency',
+    currency: 'USD',
+});
+
+// Print average profit loss value to console
+console.log('Average monthly change: ' + averageProfitLossFormatted);
+
+// Define max month on month increase variable
+let maxIncrease = Math.max(...profitLoss);
+
+// Format max increase value to display in $
+let maxIncreaseFormatted = maxIncrease.toLocaleString("en-US", {
+    style: 'currency',
+    currency: 'USD',
+});
 
 // Print largest value in profitLoss array
-console.log('Largest month on month increase: $' + Math.max(...profitLoss) + ' (' + finances[24][0] + " to " + finances[25][0] + ')');
+console.log('Largest month on month increase: ' + maxIncreaseFormatted + ' (' + finances[24][0] + " to " + finances[25][0] + ')');
+
+// Define min month on month increase variable
+let minIncrease = Math.min(...profitLoss)
+
+// Format min increase value to display in $
+let minIncreaseFormatted = minIncrease.toLocaleString("en-US", {
+    style: 'currency',
+    currency: 'USD',
+});
 
 // Print smallest value in profitLoss array
-console.log('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (' + finances[43][0] + " to " + finances[44][0] + ')');
+console.log('Largest month on month decrease: ' + minIncreaseFormatted + ' (' + finances[43][0] + " to " + finances[44][0] + ')');
 
 
 // Displays all outputs on the webpage
 document.write('Financial Analysis (Jan 2010 to Feb 2017)' + "<br>");
 document.write('--------------------------------------------------' + '<br>' + '<br>');
 document.write('Total number of months included in this report: ' + totalEntries + '<br>' + '<br>');
-document.write('Net total for this period (profit/loss) : $' + grandTotal + '<br>' + '<br>');
-document.write('Average monthly change: $' + averageProfitLoss + '<br>' + '<br>');
-document.write('Largest month on month increase: $' + Math.max(...profitLoss) + ' (' + finances[24][0] + " to " + finances[25][0] + ')' + '<br>' + '<br>');
-document.write('Largest month on month decrease: $' + Math.min(...profitLoss) + ' (' + finances[43][0] + " to " + finances[44][0] + ')' + '<br>' + '<br>');
+document.write('Net total for this period (profit/loss): ' + grandTotalFormatted + '<br>' + '<br>');
+document.write('Average monthly change: ' + averageProfitLossFormatted + '<br>' + '<br>');
+document.write('Largest month on month increase: ' + maxIncreaseFormatted + ' (' + finances[24][0] + " to " + finances[25][0] + ')' + '<br>' + '<br>');
+document.write('Largest month on month decrease: ' + minIncreaseFormatted + ' (' + finances[43][0] + " to " + finances[44][0] + ')' + '<br>' + '<br>');
